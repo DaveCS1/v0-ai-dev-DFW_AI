@@ -146,23 +146,19 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
 }
 
 export function PortfolioCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, watchDrag: false })
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [autoPlay, setAutoPlay] = useState(true)
 
   const scrollPrev = useCallback(() => {
     emblaApi?.scrollPrev()
-    setAutoPlay(false)
   }, [emblaApi])
 
   const scrollNext = useCallback(() => {
     emblaApi?.scrollNext()
-    setAutoPlay(false)
   }, [emblaApi])
 
   const scrollTo = useCallback((index: number) => {
     emblaApi?.scrollTo(index)
-    setAutoPlay(false)
   }, [emblaApi])
 
   useEffect(() => {
@@ -171,14 +167,6 @@ export function PortfolioCarousel() {
     emblaApi.on("select", onSelect)
     return () => { emblaApi.off("select", onSelect) }
   }, [emblaApi])
-
-  useEffect(() => {
-    if (!emblaApi || !autoPlay) return
-    const interval = setInterval(() => {
-      emblaApi.scrollNext()
-    }, 6000)
-    return () => clearInterval(interval)
-  }, [emblaApi, autoPlay])
 
   return (
     <section id="portfolio" className="relative py-24 md:py-32">
