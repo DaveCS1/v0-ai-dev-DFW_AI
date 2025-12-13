@@ -104,7 +104,7 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
       onTouchStart={() => { setIsDragging(true); setIsHovering(true) }}
       onTouchEnd={() => { setIsDragging(false); setIsHovering(false) }}
     >
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         <img
           src={afterImage}
           alt="After"
@@ -114,7 +114,7 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
       </div>
 
       <div
-        className="absolute inset-0 overflow-hidden"
+        className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <img
@@ -126,7 +126,7 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
       </div>
 
       <div
-        className="absolute top-0 bottom-0 w-1 bg-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.5)]"
+        className="absolute top-0 bottom-0 w-1 bg-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.5)] pointer-events-none"
         style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-cyan-400 rounded-full flex items-center justify-center shadow-lg">
@@ -135,10 +135,10 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
         </div>
       </div>
 
-      <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-2 py-1 rounded font-medium">
+      <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-2 py-1 rounded font-medium pointer-events-none">
         BEFORE
       </div>
-      <div className="absolute top-3 right-3 bg-cyan-400/90 text-black text-xs px-2 py-1 rounded font-medium">
+      <div className="absolute top-3 right-3 bg-cyan-400/90 text-black text-xs px-2 py-1 rounded font-medium pointer-events-none">
         AFTER
       </div>
     </div>
