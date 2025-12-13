@@ -7,6 +7,7 @@ import { ContactFormSection } from "@/components/contact-form-section"
 import { EstimateBuilderWidget } from "@/components/estimate-builder-widget"
 import { Header } from "@/components/header"
 import { AnimatedBackground } from "@/components/animated-background"
+import { PortfolioCarousel } from "@/components/portfolio-carousel"
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Header />
       <HeroSection />
       <ServicesSection />
+      <PortfolioCarousel />
       <ExpertiseSection />
       <ProcessSection />
       <CTASection />
