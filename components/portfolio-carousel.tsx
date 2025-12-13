@@ -114,8 +114,8 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
     >
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src={afterImage}
-          alt="After"
+          src={beforeImage}
+          alt="Before"
           className="w-full h-full object-cover"
           draggable={false}
         />
@@ -126,8 +126,8 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <img
-          src={beforeImage}
-          alt="Before"
+          src={afterImage}
+          alt="After"
           className="w-full h-full object-cover"
           draggable={false}
         />
@@ -143,11 +143,11 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
         </div>
       </div>
 
-      <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-2 py-1 rounded font-medium pointer-events-none">
-        BEFORE
-      </div>
-      <div className="absolute top-3 right-3 bg-cyan-400/90 text-black text-xs px-2 py-1 rounded font-medium pointer-events-none">
+      <div className="absolute top-3 left-3 bg-cyan-400/90 text-black text-xs px-2 py-1 rounded font-medium pointer-events-none">
         AFTER
+      </div>
+      <div className="absolute top-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded font-medium pointer-events-none">
+        BEFORE
       </div>
     </div>
   )
