@@ -52,10 +52,11 @@ const portfolioItems: PortfolioItem[] = [
 function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeImage: string; afterImage: string; autoAnimate: boolean }) {
   const [sliderPosition, setSliderPosition] = useState(50)
   const [isDragging, setIsDragging] = useState(false)
+  const [isHovering, setIsHovering] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!autoAnimate || isDragging) return
+    if (!autoAnimate || isDragging || isHovering) return
 
     const interval = setInterval(() => {
       setSliderPosition(prev => {
@@ -63,10 +64,10 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
         if (newPos >= 85) return 15
         return newPos
       })
-    }, 50)
+    }, 150)
 
     return () => clearInterval(interval)
-  }, [autoAnimate, isDragging])
+  }, [autoAnimate, isDragging, isHovering])
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return
@@ -97,9 +98,11 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
       className="relative w-full aspect-video overflow-hidden rounded-xl cursor-ew-resize select-none"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
       onTouchMove={handleTouchMove}
-      onTouchStart={() => setIsDragging(true)}
-      onTouchEnd={() => setIsDragging(false)}
+      onTouchStart={() => { setIsDragging(true); setIsHovering(true) }}
+      onTouchEnd={() => { setIsDragging(false); setIsHovering(false) }}
     >
       <div className="absolute inset-0">
         <img
