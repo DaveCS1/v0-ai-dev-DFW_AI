@@ -50,24 +50,35 @@ const portfolioItems: PortfolioItem[] = [
 ]
 
 function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeImage: string; afterImage: string; autoAnimate: boolean }) {
-  const [sliderPosition, setSliderPosition] = useState(50)
+  const [sliderPosition, setSliderPosition] = useState(100)
   const [isDragging, setIsDragging] = useState(false)
-  const [isHovering, setIsHovering] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const hasAnimatedRef = useRef(false)
 
   useEffect(() => {
-    if (!autoAnimate || isDragging || isHovering) return
+    if (!autoAnimate) {
+      hasAnimatedRef.current = false
+      setSliderPosition(100)
+      return
+    }
 
-    const interval = setInterval(() => {
-      setSliderPosition(prev => {
-        const newPos = prev + 2
-        if (newPos >= 85) return 15
-        return newPos
-      })
-    }, 150)
+    if (hasAnimatedRef.current) return
 
-    return () => clearInterval(interval)
-  }, [autoAnimate, isDragging, isHovering])
+    hasAnimatedRef.current = true
+    let currentPos = 100
+    const targetPos = 80
+
+    const animateStep = () => {
+      currentPos -= 1
+      setSliderPosition(currentPos)
+      if (currentPos > targetPos) {
+        setTimeout(animateStep, 30)
+      }
+    }
+
+    const timeout = setTimeout(animateStep, 300)
+    return () => clearTimeout(timeout)
+  }, [autoAnimate])
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return
@@ -78,7 +89,6 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
   }, [])
 
   const handleMouseDown = () => setIsDragging(true)
-  const handleMouseUp = () => setIsDragging(false)
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) handleMove(e.clientX)
   }
@@ -98,11 +108,9 @@ function BeforeAfterReveal({ beforeImage, afterImage, autoAnimate }: { beforeIma
       className="relative w-full aspect-video overflow-hidden rounded-xl cursor-ew-resize select-none"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
       onTouchMove={handleTouchMove}
-      onTouchStart={() => { setIsDragging(true); setIsHovering(true) }}
-      onTouchEnd={() => { setIsDragging(false); setIsHovering(false) }}
+      onTouchStart={() => setIsDragging(true)}
+      onTouchEnd={() => setIsDragging(false)}
     >
       <div className="absolute inset-0 pointer-events-none">
         <img
