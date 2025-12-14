@@ -131,7 +131,9 @@ export function EstimateBuilderWidget() {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`transition-all duration-300 mt-4 ml-auto flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-white font-semibold rounded-2xl hover:from-cyan-300 hover:via-purple-400 hover:to-pink-400 transform hover:scale-105 shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50`}
+          className={`${
+            isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+          } transition-all duration-300 mt-4 ml-auto flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-white font-semibold rounded-2xl hover:from-cyan-300 hover:via-purple-400 hover:to-pink-400 transform hover:scale-105 shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50`}
         >
           <Calculator className="w-5 h-5" />
           <span>Estimate Builder</span>
