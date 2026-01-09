@@ -18,7 +18,7 @@ export function EstimateBuilderWidget() {
     e.preventDefault()
     console.log("[v0] Estimate form submitted:", formData)
     // Handle form submission
-    alert("Thank you! We'll send you an estimate shortly.")
+    alert("Thank you! We'll get back to you within 24 hours.")
     setIsOpen(false)
   }
 
@@ -36,8 +36,8 @@ export function EstimateBuilderWidget() {
                     <Calculator className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold text-lg">Estimate Builder</h3>
-                    <p className="text-cyan-400 text-xs">Get a quick quote</p>
+                    <h3 className="text-white font-semibold text-lg">Get Started Now</h3>
+                    <p className="text-cyan-400 text-xs">Tell us about your project</p>
                   </div>
                 </div>
                 <button
@@ -55,14 +55,14 @@ export function EstimateBuilderWidget() {
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-cyan-500/20 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    className="w-full px-4 py-3 bg-slate-900/90 border border-cyan-500/30 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all custom-select"
                     required
                   >
                     <option value="">Select type</option>
-                    <option value="desktop">Desktop App</option>
-                    <option value="web">Web App</option>
-                    <option value="ai">AI Integration</option>
-                    <option value="cv">Computer Vision</option>
+                    <option value="upgrade">Upgrade Existing Software</option>
+                    <option value="utility">New Utility Application</option>
+                    <option value="business-system">Entire Business System</option>
+                    <option value="continue">Continue Partial Project</option>
                   </select>
                 </div>
 
@@ -71,7 +71,7 @@ export function EstimateBuilderWidget() {
                   <select
                     value={formData.timeline}
                     onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-cyan-500/20 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    className="w-full px-4 py-3 bg-slate-900/90 border border-cyan-500/30 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all custom-select"
                     required
                   >
                     <option value="">Select timeline</option>
@@ -87,7 +87,7 @@ export function EstimateBuilderWidget() {
                   <select
                     value={formData.budget}
                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-cyan-500/20 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    className="w-full px-4 py-3 bg-slate-900/90 border border-cyan-500/30 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all custom-select"
                     required
                   >
                     <option value="">Select budget</option>
@@ -112,7 +112,7 @@ export function EstimateBuilderWidget() {
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-cyan-500 transform hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-cyan-500/25"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:from-cyan-300 hover:via-purple-400 hover:to-pink-400 transform hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-purple-500/25"
                 >
                   Get Estimate
                 </button>
@@ -136,7 +136,7 @@ export function EstimateBuilderWidget() {
           } transition-all duration-300 mt-4 ml-auto flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-white font-semibold rounded-2xl hover:from-cyan-300 hover:via-purple-400 hover:to-pink-400 transform hover:scale-105 shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50`}
         >
           <Calculator className="w-5 h-5" />
-          <span>Estimate Builder</span>
+          <span>Get Started Now</span>
         </button>
       </div>
     </>
